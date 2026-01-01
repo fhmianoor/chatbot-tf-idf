@@ -5,7 +5,6 @@ import nltk
 import time
 import os
 from nltk.corpus import stopwords
-from nltk.tokenize import word_tokenize
 from sklearn.metrics.pairwise import cosine_similarity
 
 
@@ -99,7 +98,7 @@ stop_words = set(stopwords.words("indonesian"))
 def preprocess(text):
     text = text.lower()
     text = text.translate(str.maketrans("", "", string.punctuation))
-    tokens = word_tokenize(text)
+    tokens = text.split() 
     tokens = [t for t in tokens if t not in stop_words]
     return " ".join(tokens)
 
