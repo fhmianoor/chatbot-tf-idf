@@ -3,6 +3,7 @@ import joblib
 import string
 import nltk
 import time
+import os
 from nltk.corpus import stopwords
 from nltk.tokenize import word_tokenize
 from sklearn.metrics.pairwise import cosine_similarity
@@ -84,7 +85,10 @@ footer {{
 """, unsafe_allow_html=True)
 
 
-artifacts = joblib.load("model/chatbot.pkl")
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+MODEL_PATH = os.path.join(BASE_DIR, "model", "chatbot.pkl")
+
+artifacts = joblib.load(MODEL_PATH)
 vectorizer = artifacts["vectorizer"]
 tfidf_matrix = artifacts["tfidf_matrix"]
 df = artifacts["data"]
